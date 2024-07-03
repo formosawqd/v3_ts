@@ -1,5 +1,7 @@
 <template>
   <div>
+    <a-button type="primary" @click="handleClick">Click me!</a-button>
+
     <h1>User List</h1>
     <ul>
       <li v-for="user in users" :key="user.id">
@@ -12,7 +14,11 @@
 <script setup>
 import { ref, onMounted } from 'vue' // 导入 ref 和 onMounted
 import { getUsers } from '@/api/api'
+import { message } from 'ant-design-vue'
 
+const handleClick = () => {
+  message.success('Button clicked!')
+}
 const users = ref([]) // 使用 ref 创建响应式数据
 
 // 在组件挂载时发送请求
