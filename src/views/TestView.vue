@@ -1,7 +1,9 @@
 <template>
   <div>
     <a-button type="primary" @click="handleClick">Click me!</a-button>
-
+    <div class="box">
+      <span>span</span>
+    </div>
     <h1>User List</h1>
     <ul>
       <li v-for="user in users" :key="user.id">
@@ -37,13 +39,13 @@ onMounted(getList)
 // 返回响应式数据和需要暴露给模板的数据和方法
 </script>
 
-<style scoped>
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  padding: 8px;
-  border-bottom: 1px solid #ccc;
+<style scoped lang="scss">
+.box {
+  width: 20px;
+  height: 20px;
+  background-color: $color-green;
+  span {
+    color: red;
+  }
 }
 </style>
