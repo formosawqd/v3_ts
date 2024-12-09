@@ -7,6 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
+    open: true,
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
