@@ -1,10 +1,18 @@
 <template>
-  <a-row justify="center" align="middle" style="height: 100vh; background-color: #f0f2f5">
+  <a-row
+    justify="center"
+    align="middle"
+    style="height: 100vh; background: linear-gradient(to right, #6a11cb, #2575fc)"
+  >
     <a-col :span="8">
       <a-card
         title="Login"
         :bordered="false"
-        style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)"
+        style="
+          border-radius: 20px;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+          background-color: rgba(255, 255, 255, 0.9);
+        "
       >
         <a-form
           :model="formState"
@@ -19,12 +27,13 @@
             label="Username"
             name="username"
             :rules="[{ required: true, message: 'Please input your username!' }]"
+            style="margin-bottom: 20px"
           >
             <a-input
               v-model:value="formState.username"
               placeholder="Enter your username"
               size="large"
-              style="border-radius: 8px"
+              style="border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1)"
             />
           </a-form-item>
 
@@ -32,12 +41,13 @@
             label="Password"
             name="password"
             :rules="[{ required: true, message: 'Please input your password!' }]"
+            style="margin-bottom: 30px"
           >
             <a-input-password
               v-model:value="formState.password"
               placeholder="Enter your password"
               size="large"
-              style="border-radius: 8px"
+              style="border-radius: 10px; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1)"
             />
           </a-form-item>
 
@@ -47,8 +57,12 @@
               html-type="submit"
               block
               size="large"
-              style="border-radius: 8px; background-color: #4caf50; border-color: #4caf50"
-              @click="logins"
+              style="
+                border-radius: 8px;
+                background-color: #4caf50;
+                border-color: #4caf50;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+              "
             >
               Submit
             </a-button>
@@ -69,32 +83,56 @@ const formState: LoginParams = reactive({
   password: '123456'
 })
 
-const onFinish = (values: string) => {
-  console.log('Success:', values)
+const onFinish = async () => {
+  const res = await login(formState)
+  console.log(res)
 }
 
 const onFinishFailed = (errorInfo: string) => {
   console.log('Failed:', errorInfo)
 }
-
-const logins = async () => {
-  const res = await login(formState)
-  console.log(res)
-}
 </script>
 
 <style scoped>
-/* 自定义样式 */
+/* 设置渐变背景 */
+.a-row {
+  background: linear-gradient(to right, #6a11cb, #2575fc); /* 渐变颜色 */
+}
+
 .a-card {
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.9); /* 半透明的背景 */
 }
 
 .a-form-item {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .a-button {
   border-radius: 8px;
+  background-color: #4caf50;
+  border-color: #4caf50;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.a-button:hover {
+  background-color: #45a049;
+  border-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.a-button:active {
+  background-color: #388e3c;
+  border-color: #388e3c;
+  transform: translateY(0);
+}
+
+.a-input,
+.a-input-password {
+  border-radius: 10px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 </style>
