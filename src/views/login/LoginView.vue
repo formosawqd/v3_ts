@@ -52,20 +52,9 @@
           </a-form-item>
 
           <a-form-item :wrapper-col="{ offset: 6, span: 16 }">
-            <a-button
-              type="primary"
-              html-type="submit"
-              block
-              size="large"
-              style="
-                border-radius: 8px;
-                background-color: #4caf50;
-                border-color: #4caf50;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-              "
-            >
-              Submit
-            </a-button>
+            <div class="login-btn">
+              <button class="btn-donate">登录</button>
+            </div>
           </a-form-item>
         </a-form>
       </a-card>
@@ -134,5 +123,58 @@ const onFinishFailed = (errorInfo: string) => {
 .a-input-password {
   border-radius: 10px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* From Uiverse.io by Allyhere */
+.login-btn {
+  display: flex;
+  justify-content: center;
+}
+.btn-donate {
+  width: 180px;
+  --clr-font-main: hsla(0 0% 20% / 100);
+  --btn-bg-1: hsla(194 100% 69% / 1);
+  --btn-bg-2: hsla(217 100% 56% / 1);
+  --btn-bg-color: hsla(360 100% 100% / 1);
+  --radii: 0.5em;
+  cursor: pointer;
+  padding: 0.4em 1em;
+  min-width: 120px;
+  min-height: 32px;
+  font-size: var(--size, 1rem);
+  font-weight: 500;
+  transition: 0.8s;
+  background-size: 280% auto;
+  background-image: linear-gradient(
+    325deg,
+    var(--btn-bg-2) 0%,
+    var(--btn-bg-1) 55%,
+    var(--btn-bg-2) 90%
+  );
+  border: none;
+  border-radius: var(--radii);
+  color: var(--btn-bg-color);
+  box-shadow:
+    0px 0px 20px rgba(71, 184, 255, 0.5),
+    0px 5px 5px -1px rgba(58, 125, 233, 0.25),
+    inset 4px 4px 8px rgba(175, 230, 255, 0.5),
+    inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+}
+
+.btn-donate:hover {
+  background-position: right top;
+}
+
+.btn-donate:is(:focus, :focus-visible, :active) {
+  outline: none;
+  box-shadow:
+    0 0 0 3px var(--btn-bg-color),
+    0 0 0 6px var(--btn-bg-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-donate {
+    transition: linear;
+  }
 }
 </style>
