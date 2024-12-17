@@ -1,7 +1,6 @@
 // stores/userStore.ts
 import { defineStore } from 'pinia'
 import { login } from '@/api/api'
-import type { LoginResponse } from '@/types/api'
 
 interface LoginParams {
   username: string
