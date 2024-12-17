@@ -63,6 +63,7 @@
 </template>
 
 <script setup lang="ts">
+import CryptoJS from 'crypto-js'
 import type { LoginParams } from '@/types/api'
 import { login } from '@/api/api'
 import { reactive } from 'vue'
@@ -71,9 +72,12 @@ const formState: LoginParams = reactive({
   username: 'admin',
   password: '123456'
 })
-
 const onFinish = async () => {
-  const res = await login(formState)
+  let params = {
+    username: formState.username,
+    password: CryptoJS.AES.encrypt(formState.password, 'your-secret-key').toString()
+  }
+  const res = await login(params)
   console.log(res)
 }
 
@@ -85,7 +89,7 @@ const onFinishFailed = (errorInfo: string) => {
 <style scoped>
 /* 设置渐变背景 */
 .a-row {
-  background: linear-gradient(to right, #6a11cb, #2575fc); /* 渐变颜色 */
+  background: linear-gradient(to right, #6a11cb, #2575fc);
 }
 
 .a-card {
