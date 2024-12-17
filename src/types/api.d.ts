@@ -1,11 +1,13 @@
 interface ApiResponse<T = any> {
-  data: T
+  data: T,
+  status: number;
+  statusText: string;
 }
 
 // 定义登录接口参数类型
 export interface LoginParams {
   username: string
-  password: string
+  password: string,
 }
 
 export interface LoginResponse {
