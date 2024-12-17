@@ -1,4 +1,5 @@
-import { get, post } from './axios'
+// import { get, post } from './axios'
+import axios from './axios'
 import type { LoginParams, LoginResponse } from '@/types/api'
 export interface UserParams {
   page: number
@@ -13,5 +14,5 @@ export interface User {
 
 // 用户登录
 export function login(data: LoginParams) {
-  return post<LoginResponse>('/login', data)
+  return axios.post<LoginResponse>('/login', data)
 }
